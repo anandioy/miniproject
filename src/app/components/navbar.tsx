@@ -55,7 +55,7 @@ export default function Navbar() {
             </Button>
           </Link>
 
-          <Link href='/log-in'>
+          <Link href='/login'>
             <Button
               color='white'
               bgColor='black'
