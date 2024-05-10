@@ -25,7 +25,7 @@ const LoginSchema = Yup.object().shape({
 
 const LoginView = () => {
   const router = useRouter();
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
   const LoginForm = withFormik<FormProps, FormValues>({
     mapPropsToValues: (props) => ({
@@ -35,7 +35,8 @@ const LoginView = () => {
     validationSchema: LoginSchema,
     enableReinitialize: true,
     handleSubmit({ email, password }: FormValues, { resetForm }) {
-      dispatch(signIn({ email, password }));
+      // dispatch
+      (signIn({ email, password }));
       resetForm();
       router.push("/");
     },

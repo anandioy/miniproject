@@ -43,14 +43,14 @@ import Image from 'next/image'
                                 onChange={handleChange}
                                 value={values.email}
                                 />
-                            {touched.email && errors.email} && (
-                                <Text>
+                                {touched.email && errors.email && (
+                                <Text color='red'>
                                     {errors.email}
                                 </Text>
-                            )
+                                )}
                         </FormControl>
                         <FormControl>
-                            <FormLabel htmlFor="password">Password :</FormLabel>
+                            <FormLabel htmlFor="password">Password</FormLabel>
                                 <Field
                                 name="password"
                                 type="password"
@@ -58,8 +58,8 @@ import Image from 'next/image'
                                   value={values.password}
                                 />
                                 {touched.password && errors.password && (
-                               <Text>
-                               {errors.password}
+                               <Text color='red'>
+                                {errors.password}
                                 </Text>
                                 )}
                         </FormControl>
