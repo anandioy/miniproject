@@ -1,8 +1,8 @@
 'use client'
 
 import { AbsoluteCenter, Box, Center, Container, Divider, Flex, Grid, HStack, Heading, List, ListItem, VStack } from "@chakra-ui/layout"
-import Image from "next/image"
-import logo from "../assets/mp logo(2).png"
+import Image from "next/image";
+import logo from "../../assets/mp logo(2).png";
 
 function Footer() {
     return (
@@ -12,12 +12,6 @@ function Footer() {
             color='white'
             bg='black'
         >
-
-
-
-
-
-
             <HStack gap='40' >
                     <List mr='15' spacing='5'>
                     <Heading size='sm'>

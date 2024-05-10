@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { useAppDispatch } from "./lib/hooks";
-import { checkToken } from "./lib/features/auth/authSlice";
+import { useAppDispatch } from "../lib/hooks";
+import { checkToken } from "../lib/features/auth/authSlice";
 
 export default function Auth({ children }: { children: React.ReactNode }) {
   const dispatch = useAppDispatch();

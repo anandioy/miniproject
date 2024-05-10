@@ -1,14 +1,14 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
-import slide1 from "../assets/hindia.jpeg"
-import slide2 from "../assets/oasis.jpg"
-import slide3 from "../assets/1.webp"
-import slide4 from "../assets/2.jpg"
-import slide5 from "../assets/2.webp"
-import slide6 from "../assets/3.webp"
-import slide7 from "../assets/4.jpg"
-import slide8 from "../assets/5.jpg"
+import slide1 from "../../assets/hindia.jpeg";
+import slide2 from "../../assets/oasis.jpg"
+import slide3 from "../../assets/1.webp"
+import slide4 from "../../assets/2.jpg"
+import slide5 from "../../assets/2.webp"
+import slide6 from "../../assets/3.webp"
+import slide7 from "../../assets/4.jpg"
+import slide8 from "../../assets/5.jpg"
 import Image from 'next/image';
 
 
