@@ -2,10 +2,21 @@
 
 import { Search2Icon, SearchIcon } from '@chakra-ui/icons'
 import { Box, Button, ButtonGroup, Center, Flex, Icon, IconButton, Image, Input, InputGroup, InputLeftElement, MenuButton, Spacer, Avatar, Divider } from '@chakra-ui/react'
-import Link from 'next/link'
-import React from 'react'
+import Link from 'next/link';
+import {useRouter} from 'next/navigation';
+import { useAppSelector, useAppDispatch } from '../../../lib/hooks';
+import { signOut } from "../../../lib/features/auth/authSlice";
+
+
+import React from 'react';
 
 export default function Navbar() {
+
+  const router = useRouter();
+  const { isLogin } = useAppSelector((state) => state.auth.status);
+  const dispatch = useAppDispatch();
+
+
   return (
 
     <Flex
@@ -43,18 +54,31 @@ export default function Navbar() {
         
         <ButtonGroup gap='2'>
 
+        {isLogin == false ? (
+
+          <>
+          </>
+        ) : (
           <Link href='/tickets'>
           <Button color='white' bgColor='black' variant='outline'>
             Tickets
           </Button>
           </Link>
+        )}
 
+
+        {isLogin == false ? (
+          <>
+          </>
+        ) : (
           <Link href="/create-event">
             <Button color='white' bgColor='black' variant='outline' >
               Create Event
             </Button>
           </Link>
+        )}
 
+        {isLogin == false ? (
           <Link href='/login'>
             <Button
               color='white'
@@ -63,22 +87,48 @@ export default function Navbar() {
               Log in
             </Button>
           </Link>
+        ) : (
 
+          <Link href='/login'>
+            <Button
+              color='white'
+              bgColor='black'
+              variant='outline'
+              onClick={ () => {
+                dispatch(signOut());
+                router.push("/");
+              }}
+              >
+              Log Out
+            </Button>
+          </Link>
+        )}
 
         </ButtonGroup>
       </Box>
 
+
+      {isLogin == false ? (
+        <>
+        </>
+      ) : (
       <Center height='50px'>
         <Divider ml='5' orientation='vertical' />
       </Center>
+      )}
 
+      {isLogin == false ? (
+        <>
+        </>
+      ) : (
+        
       <Link href='/profile' >
         <Avatar
           ml='5'
           size='sm'
           src='https://bit.ly/broken-link' />
       </Link>
-
+      )}
 
     </Flex >
 

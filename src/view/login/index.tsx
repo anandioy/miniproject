@@ -9,7 +9,7 @@ import Footer from '../../view/global/components/footer';
 import { withFormik } from "formik";
 import * as Yup from "yup";
 
-import { useAppDispatch } from "../../lib/hooks";
+import { useAppSelector, useAppDispatch } from "../../lib/hooks";
 import { signIn } from "../../lib/features/auth/authSlice";
 
 import { FormValues, FormProps } from "../login/types";
@@ -23,10 +23,13 @@ const LoginSchema = Yup.object().shape({
   password: Yup.string().required("Password is required"),
 });
 
+
+
+
 const LoginView = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
-
+ 
   const LoginForm = withFormik<FormProps, FormValues>({
     mapPropsToValues: (props) => ({
       email: props.initialEmail || "",
@@ -41,6 +44,7 @@ const LoginView = () => {
       router.push("/");
     },
   })(InnerForm);
+
 
     return (
 
