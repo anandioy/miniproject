@@ -1,15 +1,16 @@
 export interface FormValues {
-    username: string;
+    fullname: string;
     email: string;
     password: string;
     phone: string;
-
+    address: string;
   }
   
   export interface FormProps {
-    initialUsername?: string;
+    initialFullname?: string;
     initialEmail?: string;
     initialPassword?: string;
     initialPhone?: string;
+    initialAddress?: string;
   }
   

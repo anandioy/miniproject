@@ -1,8 +1,8 @@
 export interface UserInt {
-    username: string;
+    fullname: string;
     email: string;
     password: string;
     phone: string;
-    
+    address: string;
   }
   

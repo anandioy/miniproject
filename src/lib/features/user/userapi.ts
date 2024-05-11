@@ -1,13 +1,13 @@
-// import instance from "../../../utils/axiosInstance";
+import instance from "../../../utils/axiosInstance";
 
-// export const getUserProfile = async (userId) => {
+export const getUserProfile = async () => {
 
-//     try {
-//         const response = await instance.get(`/users/${userId}`);
+    try {
+        const response = await instance.get(`/auth/profile`);
 
-//         return response.data;
-//     } catch (error) {
-//         throw new Error('Failed to fetch user data');
-//     }
+        return response.data.user;
+    } catch (error) {
+        throw new Error('Failed to fetch user data');
+    }
 
-// };
+};

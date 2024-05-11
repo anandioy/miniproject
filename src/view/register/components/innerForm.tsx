@@ -35,16 +35,16 @@ export default function InnerForm(props: FormikProps<FormValues>) {
                     <Stack spacing="6">
                         <Stack spacing="5">
                             <FormControl>
-                                <FormLabel htmlFor="username">Username</FormLabel>
+                                <FormLabel htmlFor="fullname">Full Name</FormLabel>
                                 <Field 
-                                    name="username" 
-                                    type="username" 
+                                    name="fullname" 
+                                    type="fullname" 
                                     onChange={handleChange}
-                                    value={values.username}
+                                    value={values.fullname}
                                     />
-                            {touched.username && errors.username && (
+                            {touched.fullname && errors.fullname && (
                                     <Text>
-                                    {errors.username}
+                                    {errors.fullname}
                                     </Text>
                                 )}
 
@@ -93,6 +93,22 @@ export default function InnerForm(props: FormikProps<FormValues>) {
                                 value={values.phone}
                                 />
                                 {touched.phone && errors.phone && (
+                                    <Text>
+                                    {errors.phone}
+                                    </Text>
+                                )}
+                            </FormControl>
+                        </Stack>
+
+                        <Stack spacing="5">
+                            <FormControl>
+                                <FormLabel htmlFor="address">Address</FormLabel>
+                                <Field name="address" 
+                                type="address" 
+                                onChange={handleChange}
+                                value={values.address}
+                                />
+                                {touched.address && errors.address && (
                                     <Text>
                                     {errors.phone}
                                     </Text>

@@ -1,15 +1,36 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+
 import Navbar from '../../view/global/components/navbar'
 import Footer from '../../view/global/components/footer'
 import logo from '../assets/mp logo.png'
 import { Box, Center, Container, Divider, HStack, Heading, Link, Stack, Text } from '@chakra-ui/layout'
 import { Button, Checkbox, FormControl, FormLabel, Input, Flex, Avatar } from '@chakra-ui/react'
 import Image from 'next/image'
+import { getUserProfile } from '@/lib/features/user/userapi';
+import { UserInt } from '@/interfaces/userInterface';
+
+
 
 
 const ProfileView = () => {
+
+    const [userData, setUserData] = useState<UserInt | null>(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try { 
+                const user = await getUserProfile();
+                setUserData(user);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        fetchData();
+    }, [])
+    
     return (
 
         <div>
@@ -40,7 +61,7 @@ const ProfileView = () => {
                             mt='3'
                             as='b'
                         >
-                            John Doe
+                            {userData?.fullname ?? 'No user data available'}
                         </Text>
                     </Center>
 

@@ -28,13 +28,14 @@ const RegisterSchema = Yup.object().shape({
 const RegisterView =  () => {
     const router = useRouter();
 
-    const register = async ({ username, email, password, phone}: UserInt) => {
+    const register = async ({ fullname, email, password, phone, address}: UserInt) => {
         try {
           const { data } = await instance.post("/auth/register", {
-            username,
+            fullname,
             email,
             password,
-            phone
+            phone,
+            address
           });
           alert(data?.message);
         } catch (err) {
@@ -44,15 +45,16 @@ const RegisterView =  () => {
 
       const RegisterForm = withFormik<FormProps, FormValues>({
         mapPropsToValues: (props) => ({
-          username: props.initialUsername || "",
+          fullname: props.initialFullname || "",
           email: props.initialEmail || "",
           password: props.initialPassword || "",
           phone: props.initialPhone || "",
+          address: props.initialAddress || "",
         }),
         validationSchema: RegisterSchema,
         enableReinitialize: true,
-        handleSubmit({ username, email, password, phone }: FormValues, { resetForm }) {
-          register({ username, email, password, phone });
+        handleSubmit({ fullname, email, password, phone, address }: FormValues, { resetForm }) {
+          register({ fullname, email, password, phone, address });
           resetForm();
           router.push("/login");
         },
