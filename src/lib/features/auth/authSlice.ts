@@ -15,6 +15,7 @@ type Status = {
 interface Auth {
   user: User;
   status: Status;
+  token: string;
 }
 
 const initialState: Auth = {
@@ -25,6 +26,7 @@ const initialState: Auth = {
   status: {
     isLogin: false,
   },
+  token: "",  //
 };
 
 export const authSlice = createSlice({

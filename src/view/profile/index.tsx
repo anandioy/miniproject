@@ -1,26 +1,20 @@
 'use client'
-
-import React, { useEffect, useState } from 'react'
-
-import Navbar from '../../view/global/components/navbar'
-import Footer from '../../view/global/components/footer'
-import logo from '../assets/mp logo.png'
-import { Box, Center, Container, Divider, HStack, Heading, Link, Stack, Text } from '@chakra-ui/layout'
-import { Button, Checkbox, FormControl, FormLabel, Input, Flex, Avatar } from '@chakra-ui/react'
-import Image from 'next/image'
-import { getUserProfile } from '@/lib/features/user/userapi';
+import React, { useEffect, useState } from 'react';
+import Navbar from '../../view/global/components/navbar';
+import Footer from '../../view/global/components/footer';
+import { Box, Center, Divider, Text, Flex, Avatar, Button } from '@chakra-ui/react';
 import { UserInt } from '@/interfaces/userInterface';
-
-
-
+import { useSelector } from 'react-redux';
+import { RootState } from '@/lib/store';
+import { getUserProfile } from '@/lib/features/user/userapi';
 
 const ProfileView = () => {
-
     const [userData, setUserData] = useState<UserInt | null>(null);
+    const authToken = useSelector((state: RootState) => state.auth.token);
 
     useEffect(() => {
         const fetchData = async () => {
-            try { 
+            try {
                 const user = await getUserProfile();
                 setUserData(user);
             } catch (error) {
@@ -29,7 +23,7 @@ const ProfileView = () => {
         };
 
         fetchData();
-    }, [])
+    }, []);
     
     return (
 
@@ -80,7 +74,7 @@ const ProfileView = () => {
                             fontSize='xs'
                             mt='3'
                         >
-                            Joined March 2024
+                            {userData?.register_date}
                         </Text>
                     </Center>
 
@@ -152,22 +146,7 @@ const ProfileView = () => {
                                 textAlign='right'
                                 textColor='grey'
                             >
-                                John Doe
-                            </Text>
-                        </Flex>
-
-                        <Divider />
-
-                        <Flex justifyContent="space-between" width="100%">
-                            <Text fontSize='md' mt='3'>Gender</Text>
-                            <Text
-                                fontSize='sm'
-                                mt='3.5'
-                                ml='auto'
-                                textAlign='right'
-                                textColor='grey'
-                            >
-                                Male
+                                {userData?.fullname ?? 'No user data available'}
                             </Text>
                         </Flex>
 
@@ -182,7 +161,7 @@ const ProfileView = () => {
                                 textAlign='right'
                                 textColor='grey'
                             >
-                                johndoe@gmail.com
+                                {userData?.email ?? 'No user data available'}
                             </Text>
                         </Flex>
 
@@ -197,7 +176,7 @@ const ProfileView = () => {
                                 textAlign='right'
                                 textColor='grey'
                             >
-                                +62 813 4567 8910
+                                {userData?.phone ?? 'No user data available'}
                             </Text>
                         </Flex>
 
@@ -212,7 +191,7 @@ const ProfileView = () => {
                                 textAlign='right'
                                 textColor='grey'
                             >
-                                Jl. Veteran Raya No. 18C
+                                {userData?.address ?? 'No user data available'}
                             </Text>
                         </Flex>
 
