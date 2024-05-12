@@ -3,27 +3,48 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../../view/global/components/navbar';
 import Footer from '../../view/global/components/footer';
 import { Box, Center, Divider, Text, Flex, Avatar, Button } from '@chakra-ui/react';
-import { UserInt } from '@/interfaces/userInterface';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/lib/store';
+import { UserData } from '@/interfaces/userInterface';
 import { getUserProfile } from '@/lib/features/user/userapi';
 
 const ProfileView = () => {
-    const [userData, setUserData] = useState<UserInt | null>(null);
-    const authToken = useSelector((state: RootState) => state.auth.token);
+    const [userData, setUserData] = useState<UserData | null>(null);
+
+    const registerDate = userData?.register_date;
+    let formattedDate = '';
+
+    if (registerDate) {
+        formattedDate = new Date(registerDate).toLocaleString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+        })
+        console.log(formattedDate)
+    }
+
+    
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const user = await getUserProfile();
-                setUserData(user);
-            } catch (error) {
+                const userResponse = await getUserProfile();
+
+                if(userResponse) {
+                setUserData(userResponse.data);
+            } else {
+                console.error("user data not found in response")
+            }
+        }  
+            catch (error) {
                 console.log(error);
             }
         };
 
         fetchData();
     }, []);
+
+    useEffect(() => {
+        console.log(userData);
+    }, [userData]);
     
     return (
 
@@ -61,20 +82,11 @@ const ProfileView = () => {
 
                     <Center>
                         <Text
-                            fontSize='sm'
-                            mt='3'
-                        >
-                            Jakarta, Indonesia
-                        </Text>
-                    </Center>
-
-                    <Center>
-                        <Text
                             as='i'
                             fontSize='xs'
                             mt='3'
                         >
-                            {userData?.register_date}
+                            Joined since {formattedDate}
                         </Text>
                     </Center>
 
@@ -105,7 +117,40 @@ const ProfileView = () => {
                                 mt='1'
                                 textColor='green'
                             >
-                                10,000
+                                {userData?.redeemedPoints ?? 'No user data available'}
+                            </Text>
+                        </Center>
+
+                    </Box>
+
+
+                    <Box
+                        borderWidth='1px'
+                        borderRadius='lg'
+                        mt='40px'
+                        pl='10px'
+                        pr='10px'
+                        pb='10px'
+                    >
+
+                        <Center>
+                            <Text
+                                as='b'
+                                fontSize='sm'
+                                mt='4'
+                                textColor='green'
+                            >
+                                Referral Code
+                            </Text>
+                        </Center>
+
+                        <Center>
+                            <Text
+                                fontSize='sm'
+                                mt='1'
+                                textColor='green'
+                            >
+                                {userData?.referralcode ?? 'No user data available'}
                             </Text>
                         </Center>
 
