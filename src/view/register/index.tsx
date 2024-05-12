@@ -10,7 +10,7 @@ import Footer from '../global/components/footer';
 import { withFormik } from "formik";
 import * as Yup from "yup";
 
-import { UserInt } from '../../interfaces/userInterface';
+import { UserReg } from '../../interfaces/userInterface';
 import { FormValues, FormProps } from "./types";
 
 import InnerForm from './components/innerForm';
@@ -28,7 +28,7 @@ const RegisterSchema = Yup.object().shape({
 const RegisterView =  () => {
     const router = useRouter();
 
-    const register = async ({ fullname, email, password, phone, address}: UserInt) => {
+    const register = async ({ fullname, email, password, phone, address}: UserReg) => {
         try {
           const { data } = await instance.post("/auth/register", {
             fullname,

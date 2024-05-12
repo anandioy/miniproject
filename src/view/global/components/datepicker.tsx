@@ -4,12 +4,16 @@ import DateTimePicker from 'react-datetime-picker';
 import 'react-datetime-picker/dist/DateTimePicker.css';
 import 'react-calendar/dist/Calendar.css';
 
-export default function Datepicker() {
-    const [value, onChange] = useState<Date | null>(new Date());
+interface DatePickerProps {
+    selected: Date | null; 
+    onChange: (date: Date | null) => void; 
+    minDate: Date; 
+    maxDate: Date;
+}
+
+export default function Datepicker({selected, onChange, minDate, maxDate}:DatePickerProps): JSX.Element {
     const today = new Date();
-    const maxDate = new Date();
-    maxDate.setFullYear(today.getFullYear() + 1);
-    
+
     const handleDateChange = (date: Date | null) => {
         if (date !== null) {
             onChange(date);
@@ -17,14 +21,12 @@ export default function Datepicker() {
     }
 
     return (
-        
-            <DateTimePicker 
-                onChange={handleDateChange} 
-                value ={value}
-                format="dd/MM/yyyy"
-                minDate={today}
-                maxDate={maxDate}
-            />
-       
+        <DateTimePicker 
+            onChange={handleDateChange} 
+            value={selected}
+            format="dd/MM/yyyy"
+            minDate={minDate}
+            maxDate={maxDate}
+        />
     )
 }

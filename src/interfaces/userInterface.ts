@@ -14,3 +14,11 @@ export interface UserData {
     message: string;
     data: UserData
   }
+
+  export interface UserReg {
+    fullname: string;
+    email: string;
+    password: string;
+    phone: string;
+    address: string;
+  }
