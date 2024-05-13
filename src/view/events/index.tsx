@@ -62,6 +62,7 @@ const EventsView = () => {
                     <Divider />
                     <CardFooter>
                         <ButtonGroup spacing='2'>
+                            <Link href='/eventcard'>
                             <Button
                                 color='white'
                                 variant='solid'
@@ -69,6 +70,7 @@ const EventsView = () => {
                                 colorScheme='yellow'>
                                 Buy ticket
                             </Button>
+                            </Link>
                         </ButtonGroup>
                     </CardFooter>
                 </Card>

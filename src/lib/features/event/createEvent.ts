@@ -4,7 +4,10 @@ import { AxiosError } from 'axios';
 export const createEvent = async (eventData: any) => {
     try {
         const response = await instance.post(`auth/create-event`, eventData);
+        alert('Event successfully created');
+        
         return response.data;
+        
     } catch (error) {
         const axiosError = error as AxiosError;
         if (axiosError.response) {
